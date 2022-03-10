@@ -6,9 +6,16 @@ import java.io.*;
 public class Main{
  public static void main(String args[]) throws Exception{
      
+     
+
      //creacion con todos los participantes del sorteo
+   
      ArrayList<String> participantes = new ArrayList<>();
+     ArrayList<String> participantesTotales = new ArrayList<>();
+
      Collections.addAll(participantes,"Emi", "Lobo", "Clau", "Mari", "Santi", "Fran");
+     Collections.addAll(participantesTotales,"Emi", "Lobo", "Clau", "Mari", "Santi", "Fran");
+
      System.out.println("Los participantes del sorteo son: ");
      participantes.forEach(participante -> System.out.println(participante));
 
@@ -29,6 +36,7 @@ public class Main{
      //Se revisa si ya fueron o no sorteados todos los participantes, en caso afirmativo 
      //el archivo de los ya sorteados se elimina y se termina la ejecución
      if(participantes.size() == 0){
+        Ventana ventana = new Ventana(participantesTotales, participantes, " ");
         System.out.println("SE REINICIA EL SORTEO, TODOS SORTEADOS"); 
         yaSorteados.delete();
         return;
@@ -44,6 +52,8 @@ public class Main{
      escritor.append(ganadorSorteo + "\n");
      escritor.close();
      System.out.println(ganadorSorteo);
+
+     Ventana ventana = new Ventana(participantesTotales, participantes, ganadorSorteo);
      return;
  }
 }
